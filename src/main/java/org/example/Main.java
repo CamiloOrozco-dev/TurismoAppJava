@@ -1,7 +1,23 @@
 package org.example;
 
+import org.example.modelos.Usuario;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+      Scanner teclado =  new  Scanner(System.in);
+      Usuario usuario = new Usuario();
+
+        System.out.println("*** Bienvenidos ***");
+        System.out.println("1.: Recogiendo datos de usuario: ");
+        System.out.println("Digita tus nombres y apellidos: ");
+        usuario.setNombres(teclado.nextLine());
+        System.out.println("Digita tu correo electronico");
+        usuario.setCorreoElectronico(teclado.nextLine());
+        System.out.println("....................");
+        System.out.println(usuario);
+
     }
 }
