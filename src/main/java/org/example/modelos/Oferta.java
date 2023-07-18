@@ -1,5 +1,7 @@
 package org.example.modelos;
 
+import org.example.validaciones.OfertaValidacion;
+
 import java.util.Date;
 
 public class Oferta {
@@ -11,6 +13,7 @@ public class Oferta {
     private  Double costoTotal;
     private Integer idLocal ;
 
+    private OfertaValidacion validacion = new OfertaValidacion();
     public Oferta() {
     }
 
@@ -37,7 +40,14 @@ public class Oferta {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+
+        try {
+            this.validacion.validarCaracteres(titulo);
+            this.titulo = titulo;
+
+        } catch (Exception error){
+            System.out.print(error.getMessage());
+        }
     }
 
     public String getDescripcion() {
@@ -52,8 +62,17 @@ public class Oferta {
         return fechaInicio;
     }
 
+    //-DUDA-
+    // Es necesario poner el try catch en las dos fechas?
+
     public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+        try{
+            this.validacion.validarFecha(fechaInicio, fechaInicio);
+            this.fechaInicio = fechaInicio;
+        } catch (Exception error){
+            System.out.print(error.getMessage());
+        }
+
     }
 
     public Date getFechaFin() {
@@ -69,7 +88,13 @@ public class Oferta {
     }
 
     public void setCostoTotal(Double costoTotal) {
-        this.costoTotal = costoTotal;
+
+       try {
+           this.validacion.validarCosto(costoTotal);
+           this.costoTotal = costoTotal;
+       }catch (Exception error){
+           System.out.print(error.getMessage());
+       }
     }
 
     public Integer getIdLocal() {
@@ -78,5 +103,19 @@ public class Oferta {
 
     public void setIdLocal(Integer idLocal) {
         this.idLocal = idLocal;
+    }
+
+    @Override
+    public String toString() {
+        return "Oferta{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", costoTotal=" + costoTotal +
+                ", idLocal=" + idLocal +
+                ", validacion=" + validacion +
+                '}';
     }
 }

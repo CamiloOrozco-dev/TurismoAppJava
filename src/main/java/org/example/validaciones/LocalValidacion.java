@@ -21,14 +21,12 @@ public class LocalValidacion {
     }
 
     public Boolean validarNombreEmpresa ( String nombre)throws  Exception {
-
         String expresionRegular = "^[a-zA-ZñÑ ]+$";
-        if (!util.buscarCoincidencia(expresionRegular, nombre)) {
+        if (!Util.buscarCoincidencia(expresionRegular, nombre)) {
             throw new Exception("Señor Usuario su nombre solo puede tener letras");
         } else if (nombre.length() > 30 ){
 
-            throw new Exception("Señor Usuario el nomobre de la empresa no puede sobrepasar los 30 caracteres");
-
+            throw new Exception("Señor Usuario el nombre de la empresa no puede sobrepasar los 30 caracteres");
             }
         else
         {
