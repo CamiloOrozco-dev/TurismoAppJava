@@ -1,15 +1,16 @@
 package org.example.modelos;
 
+import org.example.utilidades.Util;
 import org.example.validaciones.OfertaValidacion;
+import java.time.LocalDate;
 
-import java.util.Date;
 
 public class Oferta {
    private Integer id;
     private  String titulo;
     private  String descripcion;
-    private  Date fechaInicio;
-    private  Date fechaFin;
+    private  LocalDate fechaInicio;
+    private  LocalDate fechaFin;
     private  Double costoTotal;
     private Integer idLocal ;
 
@@ -17,7 +18,7 @@ public class Oferta {
     public Oferta() {
     }
 
-    public Oferta(Integer id, String titulo, String descripcion, Date fechaInicio, Date fechaFin, Double costoTotal, Integer idLocal) {
+    public Oferta(Integer id, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Double costoTotal, Integer idLocal) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -58,29 +59,36 @@ public class Oferta {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    //-DUDA-
-    // Es necesario poner el try catch en las dos fechas?
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         try{
-            this.validacion.validarFecha(fechaInicio, fechaInicio);
-            this.fechaInicio = fechaInicio;
+            this.validacion.validarFormato(fechaInicio);
+            this.fechaInicio = Util.formatearFechaStringLocalDate(fechaInicio,"dd/MM/yyyy");
         } catch (Exception error){
             System.out.print(error.getMessage());
         }
 
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaFin(String fechaFin) {
+
+        try {
+            this.validacion.validarFormato(fechaFin);
+            LocalDate fechaFinalTemporal= Util.formatearFechaStringLocalDate(fechaFin, "dd/MM/yyyy");
+            this.validacion.validarFecha(this.fechaInicio, fechaFinalTemporal );
+            this.fechaFin = fechaFinalTemporal;
+        } catch (Exception error){
+            System.out.println(error.getMessage());
+        }
+
     }
 
     public Double getCostoTotal() {

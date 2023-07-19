@@ -1,8 +1,13 @@
 package org.example.validaciones;
 
+
+import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
+
+import java.time.LocalDate;
 import java.util.Date;
+
 
 public class OfertaValidacion {
 
@@ -13,30 +18,44 @@ public class OfertaValidacion {
     public Boolean validarCaracteres (String titulo ) throws  Exception{
         String expresionRegular = "^[a-zA-ZñÑ ]+$";
         if (!Util.buscarCoincidencia(expresionRegular, titulo)){
-            throw new Exception("Señor Usuario solo se permiten letras en este campo");
+            throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensaje());
         } else if (titulo.length() < 20 ) {
-            throw new Exception("Señor Usuario el numero de caracteres para la oferta debe ser menor a 20");
+            throw new Exception(Mensajes.CARACTERES_OFERTA.getMensaje());
         }
 
         return true;
     }
 
-    public boolean validarFecha (Date fechaInicio, Date fechaFin) throws Exception{
-        if (fechaInicio.after(fechaFin)) {
-            throw new Exception("Señor Usuario, la fecha de inicio no puede ser mayor a la fecha de fin ");
+    public Boolean validarFormato ( String fecha ) throws  Exception{
+        String expresionRegular = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
+        if (!Util.buscarCoincidencia(expresionRegular, fecha)){
+            throw new Exception(Mensajes.FORMATO_FECHA_INVALIDO.getMensaje()    );
+        } else {
+            return true;
         }
-        //-DUDA-
-        //Es necesario crear validacion para las dos fechas (fechaInicio, fechaFin)?
+
+    }
+
+    public boolean validarFecha (LocalDate fechaInicio, LocalDate fechaFin) throws Exception{
+        System.out.println(fechaInicio);
+        System.out.println(fechaFin);
+        if (fechaInicio.isAfter(fechaFin) || fechaFin.isBefore(fechaInicio)) {
+            throw new Exception(Mensajes.COHERENCIA_FECHAS.getMensaje());
+        }
+
         return true;
     }
+
 
     public Boolean validarCosto (Double costoTotal) throws Exception {
         //TODO:: Consultar con el profe otro posble metodo para validar el Double
         if (costoTotal <0 ){
-            throw new Exception("El valor del costo por persona no puede ser negativo");
+            throw new Exception(Mensajes.VALOR_COSTO.getMensaje());
         }
         return true;
     }
+
+
 }
 
 

@@ -1,5 +1,6 @@
 package org.example.validaciones;
 
+import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
 
@@ -12,10 +13,9 @@ public class UsuarioValidacion {
     public Boolean validarNombre(String nombres) throws Exception {
         String expresionRegular = "^[a-zA-ZñÑ ]+$";
         if (!util.buscarCoincidencia(expresionRegular, nombres)) {
-            throw new Exception("Señor Usuario su nombre solo puede tener letras");
+            throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensaje());
         } else if (nombres.length() < 10) {
-            throw new Exception("Señor Usuario revisa la cantidad de caracteres, debe ser mayor o igual a 10 caracteres");
-
+            throw new Exception(Mensajes.NOMBRE_MUY_CORTO.getMensaje());
         } else {
             return true;
         }
@@ -23,7 +23,7 @@ public class UsuarioValidacion {
     public Boolean validarCorreoElectronico (String correoElectronico) throws Exception{
         String expresionRegular = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (!util.buscarCoincidencia (expresionRegular, correoElectronico)){
-            throw new Exception (" El correo electronico que ingresaste no es valido ");
+            throw new Exception (Mensajes.CORREO_INVALIDO.getMensaje());
         } else {
             return true;
         }
@@ -33,7 +33,7 @@ public class UsuarioValidacion {
         if (ubicacion.equals(1) || ubicacion.equals(2) || ubicacion.equals(3) || ubicacion.equals(4)){
             return true;
         } else {
-        throw new Exception("la sona ingresada no es valida ");
+        throw new Exception(Mensajes.ZONA_INVALIDA.getMensaje());
         }
     }
 }

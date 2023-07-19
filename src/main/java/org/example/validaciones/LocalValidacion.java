@@ -1,5 +1,6 @@
 package org.example.validaciones;
 
+import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
 public class LocalValidacion {
@@ -12,9 +13,9 @@ public class LocalValidacion {
 
         String expresionRegular = "^-?\\d+$";
         if (!Util.buscarCoincidencia(expresionRegular, nit)){
-            throw new Exception("Señor Usuario solo se permiten numero enteros en este campo");
+            throw new Exception(Mensajes.NUMEROS_ENTEROS.getMensaje());
         } else if (nit.length() < 10 ) {
-            throw new Exception("El numero de nit debe ser mayor a diez digitos");
+            throw new Exception(Mensajes.NIT_MUY_CORTO.getMensaje());
         }
 
         return true;
@@ -23,10 +24,10 @@ public class LocalValidacion {
     public Boolean validarNombreEmpresa ( String nombre)throws  Exception {
         String expresionRegular = "^[a-zA-ZñÑ ]+$";
         if (!Util.buscarCoincidencia(expresionRegular, nombre)) {
-            throw new Exception("Señor Usuario su nombre solo puede tener letras");
+            throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensaje());
         } else if (nombre.length() > 30 ){
 
-            throw new Exception("Señor Usuario el nombre de la empresa no puede sobrepasar los 30 caracteres");
+            throw new Exception(Mensajes.CARACTERES_EMPRESA.getMensaje());
             }
         else
         {

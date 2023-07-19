@@ -1,22 +1,27 @@
 package org.example.modelos;
 
+import org.example.utilidades.Util;
 import org.example.validaciones.ReservaValidacion;
+
+import java.time.LocalDate;
 
 public class Reserva {
 
    private Integer id;
     private Integer idUsuario;
-    private   Integer idOferta;
-    private  Double fechaReserva;
+    private  Integer idOferta;
+    private LocalDate fechaReserva;
     private  Integer cantidadUsuarios;
 
     private Double costoTotal;
+
+    public static final Double iva= 0.19;
 
     protected ReservaValidacion validacion = new ReservaValidacion();
     public Reserva() {
     }
 
-    public Reserva(Integer id, Integer idUsuario, Integer idOferta, Double fechaReserva, Integer cantidadUsuarios, Double costoTotal) {
+    public Reserva(Integer id, Integer idUsuario, Integer idOferta, LocalDate fechaReserva, Integer cantidadUsuarios, Double costoTotal) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idOferta = idOferta;
@@ -49,12 +54,18 @@ public class Reserva {
         this.idOferta = idOferta;
     }
 
-    public Double getFechaReserva() {
+    public LocalDate getFechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(Double fechaReserva) {
-        this.fechaReserva = fechaReserva;
+    public void setFechaReserva(String fechaReserva)  {
+        try {
+            this.validacion.validarFormato(fechaReserva);
+            this.fechaReserva = Util.formatearFechaStringLocalDate(fechaReserva, "dd/MM/yyyy");
+        } catch (Exception error){
+            System.out.println(error.getMessage());
+        }
+
     }
 
     public Integer getCantidadUsuariosReserva() {
