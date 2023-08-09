@@ -16,7 +16,7 @@ public class OfertaValidacion {
     public OfertaValidacion (){}
 
     public Boolean validarCaracteres (String titulo ) throws  Exception{
-        String expresionRegular = "^[a-zA-ZñÑ ]+$";
+        String expresionRegular ="^[a-zA-ZñÑ ]+$";
         if (!Util.buscarCoincidencia(expresionRegular, titulo)){
             throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensaje());
         } else if (titulo.length() < 20 ) {

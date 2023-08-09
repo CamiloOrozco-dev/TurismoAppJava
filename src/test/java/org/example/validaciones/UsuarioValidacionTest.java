@@ -37,4 +37,40 @@ class UsuarioValidacionTest {
        Assertions.assertEquals(Mensajes.NOMBRE_SOLO_LETRAS.getMensaje(),exception.getMessage());
 
    }
+
+    @Test
+
+    public void validarCorreoCorrecto (){
+
+
+      String correoValido ="Juancamilo@gmail.com";
+
+     Assertions.assertDoesNotThrow(()->usuarioValidacion.validarCorreoElectronico(correoValido));
+    }
+    @Test
+    public void validarCorreoIncorrecto () {
+
+        String correoIncorrecto =" Juan123.es"; //Preparando
+        //Ejecuto y verifico
+        Exception exception = Assertions.assertThrows(Exception.class,()->usuarioValidacion.validarCorreoElectronico(correoIncorrecto));
+        Assertions.assertEquals(Mensajes.CORREO_INVALIDO.getMensaje(),exception.getMessage());
+
+    }
+
+    @Test
+
+    public void validarUbicacionCorrecta (){
+
+      Integer ubicacionCorrecta = 3;
+      Assertions.assertDoesNotThrow(()->usuarioValidacion.validarUbicacion(ubicacionCorrecta));
+    }
+
+    @Test
+
+    public void validarUbicacionIncorrecta (){
+      Integer ubicacionIncorrecta = 5;
+      Exception exception = Assertions.assertThrows(Exception.class, ()->usuarioValidacion.validarUbicacion(ubicacionIncorrecta));
+        Assertions.assertEquals(Mensajes.ZONA_INVALIDA.getMensaje(),exception.getMessage());
+    }
 }
+
