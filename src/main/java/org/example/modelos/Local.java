@@ -2,7 +2,7 @@ package org.example.modelos;
 
 import org.example.validaciones.LocalValidacion;
 
-public class Local {
+public abstract class Local {
 
   private Integer id;
     private  String nit;

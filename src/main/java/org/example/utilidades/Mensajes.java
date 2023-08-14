@@ -11,7 +11,7 @@ public enum Mensajes {
     CARACTERES_OFERTA ("Señor Usuario el numero de caracteres para la oferta debe ser menor a 20"),
     COHERENCIA_FECHAS ("Señor Usuario, la fecha de inicio no puede ser mayor a la fecha de fin "),
     CANTIDAD_PERSONAS ("La cantidad de personas por reserva debe ser menor a 4 personas"),
-    VALOR_COSTO ("El valor del costo por persona no puede ser negativo"),
+    VALOR_COSTO_NEGATIVO ("El valor del costo por persona no puede ser negativo"),
     FORMATO_FECHA_INVALIDO ("El formato de fecha no es valido"),
     COSTO_VALOR_MEMBRESIA ("El valor de la membresia no puede ser menor a 20.000 o mayor a 150.000"),
     ZONA_INVALIDA  ("Señor Usuario la zona no es valida, debe ser del 1 al 4");

@@ -19,7 +19,7 @@ public class OfertaValidacion {
         String expresionRegular ="^[a-zA-ZñÑ ]+$";
         if (!Util.buscarCoincidencia(expresionRegular, titulo)){
             throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensaje());
-        } else if (titulo.length() < 20 ) {
+        } else if (titulo.length() > 20 ) {
             throw new Exception(Mensajes.CARACTERES_OFERTA.getMensaje());
         }
 
@@ -48,9 +48,9 @@ public class OfertaValidacion {
 
 
     public Boolean validarCosto (Double costoTotal) throws Exception {
-        //TODO:: Consultar con el profe otro posble metodo para validar el Double
+
         if (costoTotal <0 ){
-            throw new Exception(Mensajes.VALOR_COSTO.getMensaje());
+            throw new Exception(Mensajes.VALOR_COSTO_NEGATIVO.getMensaje());
         }
         return true;
     }

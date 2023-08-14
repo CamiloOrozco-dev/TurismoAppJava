@@ -51,7 +51,7 @@ class LocalValidacionTest {
     @Test
     public void validarNombreEmpresaIncorrecto (){
 
-        String nombreEmpresaIncorrecto =" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        String nombreEmpresaIncorrecto =" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         Exception exception = Assertions.assertThrows(Exception.class,()->localValidacion.validarNombreEmpresa(nombreEmpresaIncorrecto));
         Assertions.assertEquals(Mensajes.CARACTERES_EMPRESA.getMensaje(),exception.getMessage());
     }

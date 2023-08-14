@@ -20,7 +20,7 @@ public abstract class Usuario {
     private final Double IVA = 0.19;
 
 
-    private UsuarioValidacion validacion = new UsuarioValidacion();
+    private final UsuarioValidacion validacion = new UsuarioValidacion();
 
     //SPECIAL METHODS
 

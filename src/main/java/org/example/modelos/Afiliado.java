@@ -1,10 +1,11 @@
 package org.example.modelos;
 
-import org.example.utilidades.Mensajes;
+import org.example.interfaces.Deduccion;
+import org.example.interfaces.Reporte;
 import org.example.utilidades.MetodosPago;
 import org.example.validaciones.AfiliadoValidacion;
 
-public class Afiliado extends Usuario{
+public class Afiliado extends Usuario implements Deduccion, Reporte {
 
     private Integer valorMembresia;
     private MetodosPago metodoPago;
@@ -72,6 +73,25 @@ public class Afiliado extends Usuario{
     }
 
 
+    @Override
+    public void calcularDeduccionAnualidad() {
+
+    }
+
+    @Override
+    public Double calcularDeduccionMensualidad() {
+        return null;
+    }
+
+    @Override
+    public void generarReporte(Integer id) {
+
+    }
+
+    @Override
+    public void mostrarReporte(Integer id) {
+
+    }
 }
 
 

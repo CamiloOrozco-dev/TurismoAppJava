@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 
 
-class UsuarioValidacionTest {
+class       UsuarioValidacionTest {
 
     //1. PREPARANDO
     //Provando el objeto UsuarioValidación
